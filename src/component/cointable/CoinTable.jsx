@@ -10,6 +10,7 @@ const {data,isLoading,isError,error}=useQuery(['coin',page],()=>getCoinData(page
     // retry:2,
     // retryDelay:1000,
     cacheTime:1000*60*25,
+    staleTime:1000*60*5
 })
 useEffect(()=>{
     console.log(data);
