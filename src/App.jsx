@@ -6,15 +6,17 @@ import NavBar from './component/navbar/NavBar'
 import Banner from './component/banner/Banner'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [currency, setCurrency] = useState('usd')
+
 
   return (
     <>
+    {currency}
       <div>
-      <NavBar />
+      <NavBar setCurrency={setCurrency} />
         <Banner/>
         
-        <CoinTable/>
+        <CoinTable currency={currency}/>
        </div>
     </>
   )
