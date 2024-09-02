@@ -10,6 +10,8 @@ function CoinTable(){
     const {currency}=currencyStore();
     const [loading, setLoading] = useState(false);
     const [allData, setAllData] = useState([]);
+    const [frequencyMap, setFrequencyMap] = useState({}); // Initialize frequency map
+
 
     // const {currency}=useContext(CurrencyContext);
 
@@ -23,10 +25,23 @@ const {data,isLoading,isError,error}=useQuery(['coin',page,currency],()=>getCoin
 
 useEffect(() => {
     if (data) {
-        setAllData((prevData) => [...prevData, ...data]);
-        setLoading(false); // Reset loading state after new data is fetched
+        // Concatenate new data with old data
+        setAllData((prevData) => {
+            const newData = [...prevData, ...data];
+            
+            // Update frequency map
+            const updatedFrequencyMap = { ...frequencyMap };
+            data.forEach(coin => {
+                updatedFrequencyMap[coin.id] = (updatedFrequencyMap[coin.id] || 0) + 1;
+            });
+            setFrequencyMap(updatedFrequencyMap);
+            
+            return newData;
+        });
+        setLoading(false); 
     }
 }, [data]);
+
 // useEffect(() => {
 //     console.log(data);
 //     if (loading && !isLoading) {
@@ -71,7 +86,7 @@ const handleScroll = debounce(() => {
       useEffect(() => {
         window.addEventListener("scroll", handleScroll);
         return () => {
-            window.removeEventListener("scroll", handleScroll); // Clean up event listener on unmount
+            window.removeEventListener("scroll", handleScroll); 
         };
     }, [handleScroll]);
 
@@ -112,10 +127,12 @@ price
             <div className="flex flex-col w-[80vw] mx-auto">
             {isLoading && <div>loading...</div>}
             {/* {data && data.map((coin)=>{ */}
+            {/* {console.log(allData)} */}
+            
                 {allData && allData.map((coin) => {
                 return (
 
-                    <div key={coin.id} className="w-full bg-transparent text-white flex py-4 px-2 font-semibold items-center justify-between">
+                    <div key={coin.id + page} className="w-full bg-transparent text-white flex py-4 px-2 font-semibold items-center justify-between">
 
                         <div className="flex items-center justify-start gap-3 basis-[35%]">
 
@@ -126,6 +143,7 @@ price
                             <div>
                                 <div className="text-3xl">{coin.name}</div>
                                 <div className="text-xl">{coin.symbol}</div>
+                                <div className="text-sm">Loaded {frequencyMap[coin.id]} times</div> 
 {/* {coin.name} */}
                            </div>
 
@@ -134,6 +152,7 @@ price
                          <div className="basis-[25%]">{coin.current_price}</div>
                          <div className="basis-[20%]">{coin.price_change_24h}</div>
                          <div className="basis-[20%]">{coin.market_cap}</div>
+
 
                     </div>
                 )
