@@ -25,7 +25,7 @@ function CoinDetailsPage(){
     //     console.log(data)
     //   },[data])
     if (isLoading) {
-        return <div>Loading...</div>;
+        return <div> page Loading...</div>;
     }
     if (isError) {
         return <div>Error: {error?.message || "Something went wrong!"}</div>; // Improved error handling
