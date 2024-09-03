@@ -3,6 +3,7 @@ import { getCoinData } from "../../services/FetchCoinData";
 import { useQuery } from "react-query";
 import { CurrencyContext } from "../../Context/CoinContext";
 import currencyStore from "../../States/state"
+import { useNavigate } from "react-router-dom";
 
 function CoinTable(){
 
@@ -11,6 +12,7 @@ function CoinTable(){
     const [loading, setLoading] = useState(false);
     const [allData, setAllData] = useState([]);
     const [frequencyMap, setFrequencyMap] = useState({}); // Initialize frequency map
+    const navigate=useNavigate();
 
 
     // const {currency}=useContext(CurrencyContext);
@@ -75,6 +77,9 @@ const handleScroll = debounce(() => {
       }, delay);
     };
   }
+  function handleCoinClick(id){
+navigate(`/details/${id}`)
+  }
 //   window.addEventListener("scroll", debounce(handleScroll, 500));
 
       useEffect(() => {
@@ -132,7 +137,7 @@ price
                 {allData && allData.map((coin) => {
                 return (
 
-                    <div key={coin.id + page} className="w-full bg-transparent text-white flex py-4 px-2 font-semibold items-center justify-between">
+                    <div onClick={()=>handleCoinClick(coin.id)} key={coin.id + page} className="w-full bg-transparent text-white flex py-4 px-2 font-semibold items-center justify-between cursor-pointer">
 
                         <div className="flex items-center justify-start gap-3 basis-[35%]">
 

@@ -14,7 +14,7 @@ function App() {
 
   return (
     <>
-    {currency}
+    {/* {currency} */}
     <CurrencyContext.Provider value={{currency, setCurrency}}>
     <Routing />
     </CurrencyContext.Provider>

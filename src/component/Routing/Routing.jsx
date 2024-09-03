@@ -9,7 +9,7 @@ function Routing(){
         <Routes>
 
             <Route path="/" element={<Home />} />
-            <Route path="/details" element={<CoinDetailsPage />} />
+            <Route path="/details/:coinId" element={<CoinDetailsPage />} />
 
 
 
