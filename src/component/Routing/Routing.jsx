@@ -3,6 +3,8 @@ import { Route, Routes } from "react-router-dom";
 // import CoinDetailsPage from "../../Pages/CoinDetailsPage";
 import MainLayout from "../../Pages/Layout";
 import {lazy , Suspense} from "react"
+import ContentLoader, { Facebook } from 'react-content-loader'
+
 
 const Home=lazy(()=>import( "../../Pages/Home"));
 const CoinDetailsPage=lazy(()=>import( "../../Pages/CoinDetailsPage"));
@@ -16,7 +18,7 @@ function Routing(){
             <Route path="/" element={<MainLayout />} >
 
 <Route index element={
-<Suspense fallback ={<div> Loading home ... </div>}>
+<Suspense fallback ={<Facebook />}>
 
 <Home/>
 </Suspense>
@@ -24,7 +26,7 @@ function Routing(){
 
 } />
 <Route path="/details/:coinId" element={
-<Suspense fallback={<div>loading details ...</div>}>
+<Suspense fallback={<Facebook />}>
 <CoinDetailsPage />
 
 </Suspense>

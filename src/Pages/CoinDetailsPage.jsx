@@ -4,6 +4,8 @@ import { useQuery } from "react-query";
 import { useEffect } from "react";
 // import { CurrencyContext } from "../Context/CoinContext";
 import currencyStore from "../States/state"
+import  { Facebook } from 'react-content-loader'
+
 
 import parse from 'html-react-parser';
 
@@ -25,7 +27,8 @@ function CoinDetailsPage(){
     //     console.log(data)
     //   },[data])
     if (isLoading) {
-        return <div> page Loading...</div>;
+        // return <div> page Loading...</div>;
+        return <Facebook />
     }
     if (isError) {
         return <div>Error: {error?.message || "Something went wrong!"}</div>; // Improved error handling
