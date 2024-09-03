@@ -10,7 +10,7 @@ function Home(){
 
         <>
           <div>
-      <NavBar  />
+      {/* <NavBar  /> */}
         <Banner/>
         
         <CoinTable />
