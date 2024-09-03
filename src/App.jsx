@@ -6,6 +6,7 @@ import NavBar from './component/navbar/NavBar'
 import Banner from './component/banner/Banner'
 import Home from './Pages/Home'
 import { CurrencyContext } from './Context/CoinContext'
+import Routing from './component/Routing/Routing'
 
 function App() {
   const [currency, setCurrency] = useState('usd')
@@ -15,7 +16,7 @@ function App() {
     <>
     {currency}
     <CurrencyContext.Provider value={{currency, setCurrency}}>
-    <Home />
+    <Routing />
     </CurrencyContext.Provider>
     </>
   )
