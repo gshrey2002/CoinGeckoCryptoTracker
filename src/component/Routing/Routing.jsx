@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import MainLayout from "../../Pages/Layout";
 import {lazy , Suspense} from "react"
 import ContentLoader, { Facebook } from 'react-content-loader'
+import CustomErrorBoundary from "../Error Boundary/ErrorBoundary";
 
 
 const Home=lazy(()=>import( "../../Pages/Home"));
@@ -13,6 +14,7 @@ function Routing(){
 
 
     return (
+        <CustomErrorBoundary>
         <Routes>
 
             <Route path="/" element={<MainLayout />} >
@@ -35,6 +37,7 @@ function Routing(){
             </Route>
        
         </Routes>
+    </CustomErrorBoundary>
     )
 }
 
