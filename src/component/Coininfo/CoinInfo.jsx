@@ -2,6 +2,7 @@ import Alert from "../Alert/Alert"
 import { Line } from 'react-chartjs-2';
 import {CategoryScale  } from "chart.js"
 import {Chart} from "chart.js/auto"
+import { chartDays } from "../../helpers/Constant";
 
 Chart.register(CategoryScale);
 
@@ -19,31 +20,9 @@ function CoinInfo({historicdata,setDay,setCoinInterval,days,currency}){
 
     }
 
-    const chartDays=[
-        {
-            label:'24h',
-            value:1
-        },
-        {
-            label:'7 days',
-            value:7
-        },
-        {
-            label:'30 days',
-            value:30
-        },
-        {
-            label:'90 days',
-            value:90
-        },
-        {
-            label:'365 days',
-            value:365
-        }
-    ]
 
     if(!historicdata){
-        return <Alert message="no Data Found" type="info" />
+        return <Alert message="no Data Found" type="warning" />
     }
 return(
    <div
