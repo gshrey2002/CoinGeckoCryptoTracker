@@ -8,6 +8,8 @@ import  { Facebook } from 'react-content-loader'
 
 
 import parse from 'html-react-parser';
+import CoinInfoContainer from "../component/Coininfo/CoinInfoContainer";
+import CoinInfo from "../component/Coininfo/CoinInfo";
 
 function CoinDetailsPage(){
 
@@ -82,7 +84,8 @@ function CoinDetailsPage(){
         </div>
 <div className="md:w-2/3 w-full p-6">
 
-coin details
+coin details 
+<CoinInfoContainer coinId={coinId} />
 </div>
 
 
