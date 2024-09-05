@@ -10,8 +10,8 @@ import Alert from "../Alert/Alert";
 function CoinInfoContainer({coinId}){
     const {currency}=currencyStore();
 // console.log(coinId);
-const [days,setDay]=useState(7);
-const [interval,setCoinInterval]=useState('')
+const [days,setDay]=useState(1);
+const [interval,setCoinInterval]=useState('daily')
     const {data:historicdata , isLoading ,isError,error}= useQuery(['coinHistoricdata',coinId,currency,days,interval],()=>
         getCoinHistoricData(coinId,interval,days,currency),{
             cacheTime:1000*60*2,
@@ -28,7 +28,7 @@ const [interval,setCoinInterval]=useState('')
       }
 return (
     <>
-    <CoinInfo historicdata={historicdata} setDay={setDay} setCoinInterval={setCoinInterval} />
+    <CoinInfo historicdata={historicdata} setDay={setDay} setCoinInterval={setCoinInterval} days={days} currency={currency} />
     </>
 )
 
