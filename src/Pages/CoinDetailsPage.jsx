@@ -23,7 +23,7 @@ function CoinDetailsPage(){
         cacheTime:1000*60*25,
         staleTime:1000*60*5,
         keepPreviousData: true,
-    })
+    });
 
     // useEffect(()=>{
     //     console.log(data)
